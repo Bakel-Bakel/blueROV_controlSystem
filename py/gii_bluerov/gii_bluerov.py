@@ -28,11 +28,11 @@ def move_rov (autopilot, axis,movement_type, speed_percentage=10):
             channel_to_move=1
         elif axis=="z":
             channel_to_move=4
-        desired_speed=1500 + speed_percentage * 5
-        if desired_speed>max_speed:
-            desired_speed=max_speed
-        if desired_speed<min_speed:
-            desired_speed=min_speed
+    desired_speed=1500 + speed_percentage * 5
+    if desired_speed>max_speed:
+        desired_speed=max_speed
+    if desired_speed<min_speed:
+        desired_speed=min_speed
     autopilot.channels.overrides[channel_to_move] = desired_speed    
 
 
