@@ -37,6 +37,7 @@ class ROV:
         self.depth += thrust * 0.05  # Assume a basic relationship
 
     def get_depth(self):
+        print(self.depth)
         return self.depth
 
 
@@ -58,14 +59,15 @@ time_counter = 0
 
 # Set up figure
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.set_ylim(-2, 15)  # Depth range
+ax.set_ylim(-15, 5)  # Depth range
 ax.set_xlim(0, 50)
 ax.set_xlabel("Time Steps")
 ax.set_ylabel("Depth (m)")
 ax.set_title("ROV Depth Control")
 depth_line, = ax.plot([], [], 'r-', lw=2, label="Depth")
-thrust_line, = ax.plot([], [], 'b-', lw=2, label="Thrust")
-ax.axhline(target_depth, color='green', linestyle='--', label="Target Depth")  # Target depth line
+#thrust_line, = ax.plot([], [], 'b-', lw=2, label="Thrust")
+ax.axhline(-target_depth, color='green', linestyle='--', label="Target Depth")  # Target depth line
+ax.axhline(0,color="blue", linestyle='--', label = 'Sea Level')
 ax.legend()
 
 
@@ -78,16 +80,16 @@ def update(frame):
 
     # Store Data
     time_steps.append(time_counter)
-    depth_values.append(current_depth)
+    depth_values.append(-1*current_depth)
     thrust_values.append(control_signal)
     time_counter += 1
 
     # Update plots
     depth_line.set_data(time_steps, depth_values)
-    thrust_line.set_data(time_steps, thrust_values)
+    #thrust_line.set_data(time_steps, thrust_values)
     ax.set_xlim(max(0, time_counter - 50), max(50, time_counter))
 
-    return depth_line, thrust_line
+    return depth_line #thrust_line
 
 
 # Animation
