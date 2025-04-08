@@ -5,8 +5,8 @@
 
 # limits to avoid crashes 
 # DO NOT MODIFY WITHOUT SUPERVISION
-max_speed = 1550
-min_speed = 1450
+max_speed = 1570
+min_speed = 1435
 
 
 # movement function
